@@ -1,0 +1,12 @@
+발급받은 인증서 파일(fullchain.pem, privkey.pem)을
+backend/certs/
+폴더에 복사하세요.
+
+벡엔드 실행
+  uvicorn backend.main:app \
+  --host 0.0.0.0 --port 8000 \
+  --ssl-keyfile backend/certs/privkey.pem \
+  --ssl-certfile backend/certs/fullchain.pem
+
+프론트엔드 실행
+  streamlit run frontend/app.py --server.port 8501 --server.enableCORS false --server.enableXsrfProtection false --server.address 0.0.0.0 --server.enableWebsocketCompression false --server.sslCert backend/certs/fullchain.pem --server.sslKey backend/certs/privkey.pem
